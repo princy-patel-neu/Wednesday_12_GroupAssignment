@@ -10,5 +10,6 @@ package model.CustomerManagement;
  * @author kal bugrara
  */
 public class ChannelCatalog {
+    //ABCDFU
     
 }
