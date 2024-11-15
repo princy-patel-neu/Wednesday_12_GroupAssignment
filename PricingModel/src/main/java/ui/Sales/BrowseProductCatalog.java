@@ -6,14 +6,14 @@ package ui.Sales;
 
 /**
  *
- * @author nikha
+ * @author Swara
  */
-public class XeroxSalesConsole extends javax.swing.JPanel {
+public class BrowseProductCatalog extends javax.swing.JPanel {
 
     /**
-     * Creates new form XeroxSalesConsole
+     * Creates new form BrowseProductCatalog
      */
-    public XeroxSalesConsole() {
+    public BrowseProductCatalog() {
         initComponents();
     }
 
