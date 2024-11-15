@@ -1,31 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui;
-
-import java.awt.CardLayout;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
+package ui.main;
 
 /**
  *
- * @author Vrajesh
+ * @author Swara
  */
-public class LoginScreen extends javax.swing.JPanel {
+public class LoginJPanel extends javax.swing.JPanel {
 
- 
-    
     /**
-     * Creates new form LoginScreen
+     * Creates new form LoginJPanel
      */
-    public LoginScreen() {
+    public LoginJPanel() {
         initComponents();
-        
-        
-       
     }
 
     /**
@@ -45,8 +34,6 @@ public class LoginScreen extends javax.swing.JPanel {
         lblUser = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
-
-        setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitle.setText("Welcome to Pricing Model");
@@ -136,18 +123,15 @@ public class LoginScreen extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-       
-        
-        
-        
-    }//GEN-LAST:event_btnLoginActionPerformed
-
     private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_cmbRolesActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
@@ -168,8 +152,4 @@ public class LoginScreen extends javax.swing.JPanel {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
-
-  
-
 }
-

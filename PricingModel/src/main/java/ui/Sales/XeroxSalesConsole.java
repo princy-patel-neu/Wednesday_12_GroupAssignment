@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui;
+package ui.Sales;
 
 /**
  *
  * @author nikha
  */
-public class BookCustomerOrder extends javax.swing.JPanel {
+public class XeroxSalesConsole extends javax.swing.JPanel {
 
     /**
-     * Creates new form BookCustomerOrder
+     * Creates new form XeroxSalesConsole
      */
-    public BookCustomerOrder() {
+    public XeroxSalesConsole() {
         initComponents();
     }
 
