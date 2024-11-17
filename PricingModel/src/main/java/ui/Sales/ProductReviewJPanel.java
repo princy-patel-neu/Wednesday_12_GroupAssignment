@@ -4,6 +4,19 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.Business.Business;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+import model.Supplier.Supplier;
+
 /**
  *
  * @author Swara
@@ -13,8 +26,24 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CheckOrderStatus
      */
-    public ProductReviewJPanel() {
+    JPanel cardSequencePanel;
+    Business business;
+    SalesPersonProfile salesPerson;
+    Supplier selectedSupplier;
+    Product selectedProduct;
+
+    public ProductReviewJPanel(JPanel cardSequencePanel, Business business, SalesPersonProfile spp) {
         initComponents();
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        salesPerson = spp;
+
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY, 2, true);
+        lblTitle.setBorder(border);
+
+        initializeTable();
     }
 
     /**
@@ -129,17 +158,149 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
 
     private void suppliersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersComboBoxActionPerformed
         // TODO add your handling code here:
+        refreshSupplierCatalogTable();
     }//GEN-LAST:event_suppliersComboBoxActionPerformed
 
     private void supplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierCatalogTableMousePressed
         // TODO add your handling code here:
+        int supplierTableSize = supplierCatalogTable.getRowCount();
+        int selectedRow = supplierCatalogTable.getSelectionModel().getLeadSelectionIndex();
+
+        if (selectedRow < 0 || selectedRow > supplierTableSize - 1) {
+            return;
+        }
+
+        selectedProduct = (Product) supplierCatalogTable.getValueAt(selectedRow, 0);
+        if (selectedProduct == null) {
+            return;
+        }
+
+        ArrayList<Integer> actualPrices = selectedProduct.getAllActualPrices();
+        int numberOfSalesAboveTarget = selectedProduct.getNumberOfProductSalesAboveTarget();
+        int numberOfSalesBelowTarget = selectedProduct.getNumberOfProductSalesBelowTarget();
+        int targetPrice = selectedProduct.getTargetPrice();
+        int sumActualPrices = actualPrices.stream().mapToInt(Integer::intValue).sum();
+        int averageActualPrice = actualPrices.size() > 0 ? sumActualPrices / actualPrices.size() : 0;
+
+        if (averageActualPrice < targetPrice) {
+            if (numberOfSalesBelowTarget > numberOfSalesAboveTarget) {
+                int adjustmentAmount = targetPrice - averageActualPrice;
+                adjustmentAmount = (int) (adjustmentAmount - (adjustmentAmount * 0.05));
+                adjustmentAmount = (adjustmentAmount / 10) * 10;
+                lblAdjustPrice.setForeground(Color.red);
+                lblAdjustPrice.setText("Lower the target price by around: " + adjustmentAmount);
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            } else {
+                lblAdjustPrice.setForeground(new Color(255, 102, 0));
+                lblAdjustPrice.setText("Maintain the target price!");
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            }
+        } else if (averageActualPrice > targetPrice) {
+            if (numberOfSalesAboveTarget > (numberOfSalesBelowTarget + 1)) {
+                int adjustmentAmount = averageActualPrice - targetPrice;
+                adjustmentAmount = (int) (adjustmentAmount - (adjustmentAmount * 0.05));
+                adjustmentAmount = (adjustmentAmount / 10) * 10;
+                lblAdjustPrice.setForeground(Color.green);
+                lblAdjustPrice.setText("Increase the target price by around: " + adjustmentAmount);
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            } else {
+                lblAdjustPrice.setForeground(new Color(255, 102, 0));
+                lblAdjustPrice.setText("Maintain the target price!");
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            }
+        } else {
+            lblAdjustPrice.setForeground(new Color(255, 102, 0));
+            lblAdjustPrice.setText("Maintain the target price!");
+            lblAdjustPrice.setBackground(Color.black);
+            lblAdjustPrice.setOpaque(true);
+        }
 
     }//GEN-LAST:event_supplierCatalogTableMousePressed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-
+        SalesWorkAreaJPanel panel = new SalesWorkAreaJPanel(business, salesPerson,
+                cardSequencePanel, btnBack);
+        cardSequencePanel.add("SalesWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
+    private void initializeTable() {
+        cleanUpCombobox();
+        cleanUpTable();
+
+        ArrayList<Supplier> supplierList = business.getSupplierDirectory().getSuplierList();
+
+        if (supplierList.isEmpty()) {
+            return;
+        }
+
+        for (Supplier supplier : supplierList) {
+            suppliersComboBox.addItem(supplier.toString());
+            suppliersComboBox.setSelectedIndex(0);
+
+            String supplierName = (String) suppliersComboBox.getSelectedItem();
+            selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+            ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+        }
+    }
+
+    private void cleanUpCombobox() {
+        suppliersComboBox.removeAllItems();
+    }
+
+    private void cleanUpTable() {
+
+        int row = supplierCatalogTable.getRowCount();
+        int i;
+        for (i = row - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+    }
+
+    public void refreshSupplierCatalogTable() {
+        int rowCount = supplierCatalogTable.getRowCount();
+        int i;
+
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+
+        String supplierName = (String) suppliersComboBox.getSelectedItem();
+
+        selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+        if (selectedSupplier == null) {
+            return;
+        }
+
+        ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+
+        for (Product product : productCatalog.getProductList()) {
+            Object[] row = new Object[5];
+            row[0] = product;
+            row[1] = product.getFloorPrice();
+            row[2] = product.getCeilingPrice();
+            row[3] = product.getTargetPrice();
+
+            ArrayList<Integer> actualPrices = product.getAllActualPrices();
+
+            int sumActualPrices = actualPrices.stream().mapToInt(Integer::intValue).sum();
+
+            int averageActualPrice = actualPrices.size() > 0 ? sumActualPrices / actualPrices.size() : 0;
+
+            row[4] = averageActualPrice;
+
+            ((DefaultTableModel) supplierCatalogTable.getModel()).addRow(row);
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,4 +312,5 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
     private javax.swing.JTable supplierCatalogTable;
     private javax.swing.JComboBox<String> suppliersComboBox;
     // End of variables declaration//GEN-END:variables
+
 }
