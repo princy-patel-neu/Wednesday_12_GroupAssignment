@@ -4,17 +4,46 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.Business.Business;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+import model.Supplier.Supplier;
+
 /**
  *
  * @author Swara
  */
 public class UpdateProductPrices extends javax.swing.JPanel {
 
+    Business business;
+    Product product;
+    JPanel cardSequencePanel;
+    SalesPersonProfile salesPerson;
+
     /**
      * Creates new form BrowseProductCatalog
      */
-    public UpdateProductPrices() {
+    public UpdateProductPrices(JPanel cardSequencePanel, Business business, SalesPersonProfile salesPerson) {
         initComponents();
+
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        this.salesPerson = salesPerson;
+        Border border = new LineBorder(Color.GRAY, 2, true);
+        lblTitle.setBorder(border);
+        disableFields();
+        initializeProductSummarytable();
+        btnUpdate.setVisible(false);
+        btnSave.setVisible(false);
     }
 
     /**
@@ -212,25 +241,77 @@ public class UpdateProductPrices extends javax.swing.JPanel {
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
         // TODO add your handling code here:
+        populateProductSummarytable();
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductActionPerformed
+        btnUpdate.setVisible(true);
+        btnSave.setVisible(true);
+        enableFields();
+
+        txtFloor.setEnabled(false);
+        txtCeiling.setEnabled(false);
+        txtTarget.setEnabled(false);
+
+        int selectedRow = tblSummary.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a product from the table first!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel dtm = (DefaultTableModel) tblSummary.getModel();
+        product = (Product) dtm.getValueAt(selectedRow, 0);
+
+        txtProdName.setText(product.toString());
+        txtFloor.setText(String.valueOf(product.getFloorPrice()));
+        txtCeiling.setText(String.valueOf(product.getCeilingPrice()));
+        txtTarget.setText(String.valueOf(product.getTargetPrice()));
 
     }//GEN-LAST:event_btnViewProductActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-
+        txtFloor.setEnabled(true);
+        txtCeiling.setEnabled(true);
+        txtTarget.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        String floorPriceText = txtFloor.getText();
+        int floorPrice = Integer.parseInt(floorPriceText);
+        product.setFloorPrice(floorPrice);
 
+        String CeilingPriceText = txtCeiling.getText();
+        int CeilingPrice = Integer.parseInt(CeilingPriceText);
+        product.setCeilingPrice(CeilingPrice);
+
+        String TargetPriceText = txtTarget.getText();
+        int TargetPrice = Integer.parseInt(TargetPriceText);
+        product.setTargetPrice(TargetPrice);
+
+        btnSave.setEnabled(false);
+        btnUpdate.setEnabled(true);
+
+        JOptionPane.showMessageDialog(null, "Product successfully updated!");
+
+        disableFields();
+        btnUpdate.setVisible(false);
+        btnSave.setVisible(false);
+        populateProductSummarytable();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-
+        SalesWorkAreaJPanel panel = new SalesWorkAreaJPanel(business, salesPerson,
+                cardSequencePanel, btnBack);
+        cardSequencePanel.add("SalesWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
@@ -253,4 +334,120 @@ public class UpdateProductPrices extends javax.swing.JPanel {
     private javax.swing.JTextField txtProdName;
     private javax.swing.JTextField txtTarget;
     // End of variables declaration//GEN-END:variables
+
+    private void populateComboBox() {
+
+        int rowCount = tblSummary.getRowCount();
+        int i;
+
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) tblSummary.getModel()).removeRow(i);
+        }
+
+        String supplierName = (String) cmbSupplier.getSelectedItem();
+
+        Supplier supplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+        if (supplier == null) {
+            return;
+        }
+
+        ProductCatalog productCatalog = supplier.getProductCatalog();
+
+        for (Product product : productCatalog.getProductList()) {
+            Object[] row = new Object[4];
+            row[0] = product;
+            row[1] = product.getFloorPrice();
+            row[2] = product.getCeilingPrice();
+            row[3] = product.getTargetPrice();
+
+            ((DefaultTableModel) tblSummary.getModel()).addRow(row);
+        }
+    }
+
+    private void disableFields() {
+        lblProductName.setVisible(false);
+        lblFloor.setVisible(false);
+        lblTarget.setVisible(false);
+        lblCeiling.setVisible(false);
+
+        txtProdName.setVisible(false);
+        txtFloor.setVisible(false);
+        txtCeiling.setVisible(false);
+        txtTarget.setVisible(false);
+    }
+
+    private void initializeProductSummarytable() {
+        cleanUpCombobox();
+        cleanUpTable();
+
+        ArrayList<Supplier> supplierList = business.getSupplierDirectory().getSuplierList();
+
+        if (supplierList.isEmpty()) {
+            return;
+        }
+
+        for (Supplier supplier : supplierList) {
+            cmbSupplier.addItem(supplier.toString());
+            cmbSupplier.setSelectedIndex(0);
+
+            String supplierName = (String) cmbSupplier.getSelectedItem();
+            supplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+            ProductCatalog productCatalog = supplier.getProductCatalog();
+        }
+    }
+
+    private void populateProductSummarytable() {
+        int rowCount = tblSummary.getRowCount();
+        int i;
+
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) tblSummary.getModel()).removeRow(i);
+        }
+
+        String supplierName = (String) cmbSupplier.getSelectedItem();
+
+        Supplier supplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+        if (supplier == null) {
+            return;
+        }
+
+        ProductCatalog productCatalog = supplier.getProductCatalog();
+
+        for (Product product : productCatalog.getProductList()) {
+            Object[] row = new Object[4];
+            row[0] = product;
+            row[1] = product.getFloorPrice();
+            row[2] = product.getCeilingPrice();
+            row[3] = product.getTargetPrice();
+
+            ((DefaultTableModel) tblSummary.getModel()).addRow(row);
+        }
+    }
+
+    private void enableFields() {
+        lblProductName.setVisible(true);
+        lblFloor.setVisible(true);
+        lblTarget.setVisible(true);
+        lblCeiling.setVisible(true);
+
+        txtProdName.setVisible(true);
+        txtFloor.setVisible(true);
+        txtCeiling.setVisible(true);
+        txtTarget.setVisible(true);
+    }
+
+    private void cleanUpCombobox() {
+        cmbSupplier.removeAllItems();
+    }
+
+    private void cleanUpTable() {
+        int row = tblSummary.getRowCount();
+        int i;
+        for (i = row - 1; i >= 0; i--) {
+            ((DefaultTableModel) tblSummary.getModel()).removeRow(i);
+        }
+    }
 }
