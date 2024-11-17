@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Sales;
+package ui.MarketingWorkSpace;
 
 /**
  *
  * @author Swara
  */
-public class ServeCustomer extends javax.swing.JPanel {
+public class MarketingWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ServeCustomer
+     * Creates new form MarketingWorkAreaJPanel
      */
-    public ServeCustomer() {
+    public MarketingWorkAreaJPanel() {
         initComponents();
     }
 

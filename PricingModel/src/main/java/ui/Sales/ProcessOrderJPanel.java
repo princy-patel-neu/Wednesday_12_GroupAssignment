@@ -6,14 +6,14 @@ package ui.Sales;
 
 /**
  *
- * @author nikha
+ * @author Swara
  */
-public class BookCustomerOrder extends javax.swing.JPanel {
+public class ProcessOrderJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BookCustomerOrder
+     * Creates new form BrowseProductCatalog
      */
-    public BookCustomerOrder() {
+    public ProcessOrderJPanel() {
         initComponents();
     }
 
