@@ -4,6 +4,21 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.Business.Business;
+import model.OrderManagement.Order;
+import model.OrderManagement.OrderItem;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+import model.Supplier.Supplier;
+
 /**
  *
  * @author nikha
@@ -13,8 +28,29 @@ public class PerformanceOrderJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PerformanceOrder
      */
+      private ArrayList<Order> orders;
+    JPanel cardSequencePanel;
+    Business business;
+    SalesPersonProfile salesPerson;
+    Supplier selectedSupplier;
+    private ProductCatalog productCatalog;
+    
+    
     public PerformanceOrderJPanel() {
         initComponents();
+         this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        this.salesPerson = salesPerson;
+        this.orders = orders;
+        this.productCatalog = productCatalog;
+        
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY,2,true);
+        lblTitle.setBorder(border);
+        
+        initializeTable();
+        populateRevenueFields();
     }
 
     /**
@@ -148,11 +184,19 @@ public class PerformanceOrderJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        SalesWorkAreaJPanel panel = new SalesWorkAreaJPanel(business, salesPerson, 
+        cardSequencePanel, btnBack);
+        cardSequencePanel.add("SalesWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void supplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboBoxActionPerformed
         // TODO add your handling code here:
+         refreshSupplierCatalogTable();
 
     }//GEN-LAST:event_supplierComboBoxActionPerformed
 
@@ -169,4 +213,121 @@ public class PerformanceOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtCompanySalesRevenue;
     private javax.swing.JTextField txtTargetSalesRevenue;
     // End of variables declaration//GEN-END:variables
+
+    private void initializeTable() {
+ cleanUpCombobox();
+        cleanUpTable();
+        
+        ArrayList<Supplier> supplierList = business.getSupplierDirectory().getSuplierList();
+        
+        if(supplierList.isEmpty()){
+            return;
+        }
+        
+        for(Supplier supplier : supplierList){
+            supplierComboBox.addItem(supplier.toString());
+            supplierComboBox.setSelectedIndex(0);
+            
+            String supplierName = (String) supplierComboBox.getSelectedItem();
+            selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+            
+            ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+        }    }
+
+    private void populateRevenueFields() {
+ int totalTargetSalesRevenue = calculateTotalTargetSalesRevenue();
+        int totalSalesRevenue = calculateTotalSalesRevenue();
+        
+        int profitOrLoss = totalSalesRevenue - totalTargetSalesRevenue;
+        double profitOrLossPercentage = ((double) profitOrLoss / totalTargetSalesRevenue) * 100;
+        
+        txtTargetSalesRevenue.setText(String.valueOf(totalTargetSalesRevenue));
+        txtCompanySalesRevenue.setText(String.valueOf(totalSalesRevenue));
+        
+        if(profitOrLoss > 0){
+            lblCompanyRevenueStatus.setForeground(Color.green);
+            lblCompanyRevenueStatus.setBackground(Color.black);
+            lblCompanyRevenueStatus.setOpaque(true);
+            lblCompanyRevenueStatus.setText("   PROFIT OF $" +profitOrLoss + " (" + String.format("%.2f", profitOrLossPercentage) + "%)");
+        }
+        
+        else if(profitOrLoss < 0){
+            lblCompanyRevenueStatus.setForeground(Color.red);
+            lblCompanyRevenueStatus.setBackground(Color.black);
+            lblCompanyRevenueStatus.setOpaque(true);
+            lblCompanyRevenueStatus.setText("   LOSS: $" + profitOrLoss + " (" + String.format("%.2f", profitOrLossPercentage) + "%)");
+        }
+        
+        else{
+            
+            lblCompanyRevenueStatus.setForeground(Color.orange);
+            lblCompanyRevenueStatus.setBackground(Color.black);
+            lblCompanyRevenueStatus.setOpaque(true);
+            lblCompanyRevenueStatus.setText("   NO PROFIT NO LOSS ");
+        }
+    }
+    
+    
+    
+       private int calculateTotalTargetSalesRevenue() {
+        int total = 0;
+        for (Order order : orders) {
+            for (OrderItem oi : order.getOrderitems()) {
+                total += oi.getStoredTargetPrice() * oi.getQuantity();
+            }
+        }
+        System.out.println("Total Target Sales Revenue: " + total);
+        return total;
+    }
+    
+    
+    public void cleanUpCombobox() {
+        
+        supplierComboBox.removeAllItems();
+    }
+
+    
+    
+    public void cleanUpTable() {
+
+        int row = tblProductRevenue.getRowCount();
+        int i;
+        for (i = row - 1; i >= 0; i--) {
+            ((DefaultTableModel) tblProductRevenue.getModel()).removeRow(i);
+        }
+    }
+    
+    private int calculateTotalSalesRevenue() {
+        int total = 0;
+        for (Order order : orders) {
+            for (OrderItem oi : order.getOrderitems()) {
+                total += oi.getOrderItemTotal();
+            }
+        }
+        return total;
+    }
+    
+    private double calculateRevenuePercentage(Product product) {
+    int totalRevenue = calculateRevenueForProduct(product);
+    System.out.println("Total revenue:" +totalRevenue);
+    int targetSalesRevenue = product.getTargetSalesRevenue();
+    System.out.println("Target Sales Revenue: " +targetSalesRevenue);
+    
+    // Calculate revenue percentage
+    double revenuePercentage = ((double) totalRevenue / targetSalesRevenue) * 100;
+    System.out.println("Revenue Percentage:" +revenuePercentage);
+    
+    return revenuePercentage;
 }
+    
+    private int calculateRevenueForProduct(Product product) {
+        int totalRevenue = 0;
+        for (Order order : orders) {
+            totalRevenue += order.getSalesRevenueForProduct(product);
+        }
+        
+        return totalRevenue;
+    }
+}
+
+
