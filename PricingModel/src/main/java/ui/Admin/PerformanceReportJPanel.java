@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Customer;
+package ui.Admin;
 
 /**
  *
  * @author Swara
  */
-public class PrepareOrder extends javax.swing.JPanel {
+public class PerformanceReportJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form PrepareOrder
+     * Creates new form PerformanceReportJPanel
      */
-    public PrepareOrder() {
+    public PerformanceReportJPanel() {
         initComponents();
     }
 
