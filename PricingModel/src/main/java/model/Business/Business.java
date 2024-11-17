@@ -6,7 +6,7 @@
 package model.Business;
 
 import java.util.ArrayList;
-
+import model.AdminManagement.AdminDirectory;
 import model.CustomerManagement.ChannelCatalog;
 import model.CustomerManagement.CustomerDirectory;
 import model.CustomerManagement.MarketCatalog;
@@ -14,6 +14,8 @@ import model.MarketingManagement.MarketingPersonDirectory;
 import model.OrderManagement.MasterOrderList;
 import model.Personnel.EmployeeDirectory;
 import model.Personnel.PersonDirectory;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
 import model.ProductManagement.ProductSummary;
 import model.ProductManagement.ProductsReport;
 import model.ProductManagement.SolutionOfferCatalog;
@@ -34,6 +36,7 @@ public class Business {
     CustomerDirectory customers;
     SupplierDirectory suppliers;
     MarketCatalog marketcatalog;
+    AdminDirectory adminDirectory;
     ChannelCatalog channelcatalog;
     SolutionOfferCatalog solutionoffercatalog;
     CustomerDirectory customerdirectory;
@@ -53,6 +56,7 @@ public class Business {
         useraccountdirectory = new UserAccountDirectory();
         marketingpersondirectory = new MarketingPersonDirectory(this);
         employeedirectory = new EmployeeDirectory(this);
+        adminDirectory = new AdminDirectory(this);
 
     }
 
@@ -72,10 +76,28 @@ public class Business {
         return marketingpersondirectory;
     }
 
+    public AdminDirectory getAdminDirectory() {
+        return adminDirectory;
+    }
+    
+    
+
     public SupplierDirectory getSupplierDirectory() {
         return suppliers;
     }
 
+    public ProductCatalog getProductCatalog(){
+        ProductCatalog combinedCatalog = new ProductCatalog();
+        for(Supplier supplier : suppliers.getSuplierList()){
+            for(Product product : supplier.getProductCatalog().getProductList()){
+                combinedCatalog.newProduct(product.getName(), product.getFloorPrice(), product.getCeilingPrice(),
+                        product.getTargetPrice());
+            }
+        }
+        
+        return combinedCatalog;
+    }
+    
     public ProductsReport getSupplierPerformanceReport(String n) {
         Supplier supplier = suppliers.findSupplier(n);
         if (supplier == null) {
