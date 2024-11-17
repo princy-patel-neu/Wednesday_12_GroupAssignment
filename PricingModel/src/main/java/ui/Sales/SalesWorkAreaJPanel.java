@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package uiSales;
+package ui.Sales;
 
 /**
  *
  * @author nikha
  */
-public class ManageCustomer extends javax.swing.JPanel {
+public class SalesWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageCustomer
      */
-    public ManageCustomer() {
+    public SalesWorkAreaJPanel() {
         initComponents();
     }
 
@@ -26,19 +26,128 @@ public class ManageCustomer extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblCustomer = new javax.swing.JLabel();
+        txtCustomer = new javax.swing.JTextField();
+        lblTitle = new javax.swing.JLabel();
+        btnServeCustomer = new javax.swing.JButton();
+        btnRevComission = new javax.swing.JButton();
+        btnPerformanceReports = new javax.swing.JButton();
+        btnProductReview = new javax.swing.JButton();
+
+        lblCustomer.setText("Customer:");
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("SALES WORK AREA");
+
+        btnServeCustomer.setBackground(new java.awt.Color(153, 153, 255));
+        btnServeCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnServeCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnServeCustomer.setText("Serve Customer");
+        btnServeCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServeCustomerActionPerformed(evt);
+            }
+        });
+
+        btnRevComission.setBackground(new java.awt.Color(153, 153, 255));
+        btnRevComission.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRevComission.setForeground(new java.awt.Color(255, 255, 255));
+        btnRevComission.setText("Update Products");
+        btnRevComission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRevComissionActionPerformed(evt);
+            }
+        });
+
+        btnPerformanceReports.setBackground(new java.awt.Color(153, 153, 255));
+        btnPerformanceReports.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPerformanceReports.setForeground(new java.awt.Color(255, 255, 255));
+        btnPerformanceReports.setText("Performance Reports");
+        btnPerformanceReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerformanceReportsActionPerformed(evt);
+            }
+        });
+
+        btnProductReview.setBackground(new java.awt.Color(153, 153, 255));
+        btnProductReview.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnProductReview.setForeground(new java.awt.Color(255, 255, 255));
+        btnProductReview.setText("Product Review");
+        btnProductReview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductReviewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCustomer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnServeCustomer))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnProductReview, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnRevComission)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnPerformanceReports, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCustomer)
+                    .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnServeCustomer))
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProductReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRevComission, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPerformanceReports, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(374, 374, 374))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnServeCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServeCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnServeCustomerActionPerformed
+
+    private void btnRevComissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevComissionActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnRevComissionActionPerformed
+
+    private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnPerformanceReportsActionPerformed
+
+    private void btnProductReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductReviewActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnProductReviewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPerformanceReports;
+    private javax.swing.JButton btnProductReview;
+    private javax.swing.JButton btnRevComission;
+    private javax.swing.JButton btnServeCustomer;
+    private javax.swing.JLabel lblCustomer;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtCustomer;
     // End of variables declaration//GEN-END:variables
 }
