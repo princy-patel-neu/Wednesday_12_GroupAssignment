@@ -4,17 +4,54 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import model.Business.Business;
+import model.CustomerManagement.CustomerProfile;
+import model.OrderManagement.Order;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+import ui.Admin.PerformanceReportJPanel;
+
 /**
  *
  * @author nikha
  */
 public class SalesWorkAreaJPanel extends javax.swing.JPanel {
 
+    Business business;
+    SalesPersonProfile spp;
+    JPanel cardSequencePanel;
+    JButton btnLogin;
+    private ArrayList<Order> orders;
+    private ProductCatalog combinedProductCatalog;
+
     /**
      * Creates new form ManageCustomer
      */
-    public SalesWorkAreaJPanel() {
+    public SalesWorkAreaJPanel(Business business, SalesPersonProfile spp, JPanel cardSequencePanel,
+            JButton btnLogin) {
         initComponents();
+        this.business = business;
+        this.spp = spp;
+        this.cardSequencePanel = cardSequencePanel;
+        this.btnLogin = btnLogin;
+
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY, 2, true);
+        lblTitle.setBorder(border);
+
+        orders = business.getMasterOrderList().getOrders();
+        combinedProductCatalog = business.getProductCatalog();
+        btnLogin.setVisible(true);
+        btnLogin.setText("LOGOUT");
     }
 
     /**
@@ -123,21 +160,53 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnServeCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServeCustomerActionPerformed
         // TODO add your handling code here:
+        String customerName = txtCustomer.getText();
+        if (customerName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "PLEASE ENTER A CUSTOMER NAME!");
+            return;
+        }
+
+        CustomerProfile selectedCustomer = business.getCustomerDirectory().findCustomer(customerName);
+        if (selectedCustomer == null) {
+            JOptionPane.showMessageDialog(this, "CUSTOMER DOES NOT EXIST!");
+            return;
+        }
+        ProcessOrderJPanel panel = new ProcessOrderJPanel(cardSequencePanel, business, selectedCustomer, spp);
+        cardSequencePanel.add("ProcessOrderJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnServeCustomerActionPerformed
 
     private void btnRevComissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevComissionActionPerformed
         // TODO add your handling code here:
-
+        UpdateProductPrices panel = new UpdateProductPrices(cardSequencePanel, business, spp);
+        cardSequencePanel.add("UpdatedProductPrices", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnRevComissionActionPerformed
 
     private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
         // TODO add your handling code here:
-
+        PerformanceReportJPanel panel = new PerformanceReportJPanel(cardSequencePanel, business, spp, orders, combinedProductCatalog);
+        cardSequencePanel.add("PerformanceReportJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnPerformanceReportsActionPerformed
 
     private void btnProductReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductReviewActionPerformed
         // TODO add your handling code here:
-
+        ProductReviewJPanel panel = new ProductReviewJPanel(cardSequencePanel, business, spp);
+        cardSequencePanel.add("ProductReviewJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnProductReviewActionPerformed
 
 
