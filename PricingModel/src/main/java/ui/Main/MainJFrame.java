@@ -6,7 +6,7 @@ package ui.main;
 
 /**
  *
- * @author Swara
+ * @author princypatel
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -32,11 +32,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 971, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 749, Short.MAX_VALUE)
         );
 
         pack();

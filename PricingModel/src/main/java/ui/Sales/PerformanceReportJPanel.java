@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Customer;
+package ui.Sales;
 
 /**
  *
- * @author Swara
+ * @author nikha
  */
-public class PrepareOrder extends javax.swing.JPanel {
+public class PerformanceReportJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form PrepareOrder
+     * Creates new form BookCustomerOrder
      */
-    public PrepareOrder() {
+    public PerformanceReportJPanel() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class PrepareOrder extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 965, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

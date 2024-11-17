@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Sales;
+package ui.Admin;
 
 /**
  *
- * @author Swara
+ * @author princypatel
  */
-public class BrowseProductCatalog extends javax.swing.JPanel {
+public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BrowseProductCatalog
+     * Creates new form AdminWorkAreaJPanle
      */
-    public BrowseProductCatalog() {
+    public AdminWorkAreaJPanel() {
         initComponents();
     }
 

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package ui.Sales;
+package ui.ProductManagement;
 
 /**
  *
- * @author nikha
+ * @author princypatel
  */
-public class ManageCustomer extends javax.swing.JPanel {
+public class ManageProductPerformanceDetail extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageCustomer
+     * Creates new form ManageProductPerformanceDetail
      */
-    public ManageCustomer() {
+    public ManageProductPerformanceDetail() {
         initComponents();
     }
 

@@ -8,12 +8,12 @@ package ui.Sales;
  *
  * @author Swara
  */
-public class ReviewSalesOrderHistory extends javax.swing.JPanel {
+public class ProcessOrderJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ReviewSalesOrderHistory
+     * Creates new form CheckOrderStatus
      */
-    public ReviewSalesOrderHistory() {
+    public ProcessOrderJPanel() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class ReviewSalesOrderHistory extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 971, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
