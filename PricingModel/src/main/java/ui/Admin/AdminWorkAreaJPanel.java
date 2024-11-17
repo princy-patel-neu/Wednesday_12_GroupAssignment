@@ -6,7 +6,11 @@ package ui.Admin;
 
 /**
  *
+<<<<<<< HEAD
  * @author Swara
+=======
+ * @author nikha
+>>>>>>> origin/nikhar
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
@@ -26,10 +30,55 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+=======
+        lblTitle = new javax.swing.JLabel();
+        btnManageSupplier = new javax.swing.JButton();
+        btnManageCustomer = new javax.swing.JButton();
+        btnPerformanceRepots = new javax.swing.JButton();
+
+        lblTitle.setBackground(new java.awt.Color(153, 153, 255));
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("       ADMIN WORK SPACE");
+
+        btnManageSupplier.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageSupplier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnManageSupplier.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageSupplier.setText("Supplier Management");
+        btnManageSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageSupplierActionPerformed(evt);
+            }
+        });
+
+        btnManageCustomer.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnManageCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        btnManageCustomer.setText("Customer Management");
+        btnManageCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageCustomerActionPerformed(evt);
+            }
+        });
+
+        btnPerformanceRepots.setBackground(new java.awt.Color(153, 153, 255));
+        btnPerformanceRepots.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPerformanceRepots.setForeground(new java.awt.Color(255, 255, 255));
+        btnPerformanceRepots.setText("Performance Reports");
+        btnPerformanceRepots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerformanceRepotsActionPerformed(evt);
+            }
+        });
+
+>>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -40,5 +89,52 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+=======
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(btnManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(btnManageSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70)
+                .addComponent(btnPerformanceRepots)
+                .addGap(19, 19, 19))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnManageCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPerformanceRepots, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(467, 467, 467))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnManageSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSupplierActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnManageSupplierActionPerformed
+
+    private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnManageCustomerActionPerformed
+
+    private void btnPerformanceRepotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceRepotsActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnPerformanceRepotsActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnManageCustomer;
+    private javax.swing.JButton btnManageSupplier;
+    private javax.swing.JButton btnPerformanceRepots;
+    private javax.swing.JLabel lblTitle;
+>>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }

@@ -26,10 +26,96 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
+=======
+        lblTitle = new javax.swing.JLabel();
+        lblsupplier = new javax.swing.JLabel();
+        SupplierComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        SupplierCatalogTable = new javax.swing.JTable();
+        btnback = new javax.swing.JButton();
+        lblproductname = new javax.swing.JLabel();
+        lblfrequencyATarget = new javax.swing.JLabel();
+        txtproductname = new javax.swing.JTextField();
+        txtreqencyATarget = new javax.swing.JTextField();
+        lblSalesRevenue = new javax.swing.JLabel();
+        txtsalesrevenues = new javax.swing.JTextField();
+        lblMarginAroundTarget = new javax.swing.JLabel();
+        lblfrequencyBTarget = new javax.swing.JLabel();
+        txtMarginAroundTarget = new javax.swing.JTextField();
+        txtfrequencyBTarget = new javax.swing.JTextField();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("MANAGE SUPPLIER");
+
+        lblsupplier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblsupplier.setText("Suppliers");
+
+        SupplierComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        SupplierComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupplierComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setText("Product");
+
+        SupplierCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAME", "FLOOR", "CEILING", "TARGET"
+            }
+        ));
+        SupplierCatalogTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SupplierCatalogTableMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(SupplierCatalogTable);
+
+        btnback.setBackground(new java.awt.Color(153, 153, 255));
+        btnback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnback.setForeground(new java.awt.Color(255, 255, 255));
+        btnback.setText("<<< Back");
+        btnback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbackActionPerformed(evt);
+            }
+        });
+
+        lblproductname.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblproductname.setText("Product Name:");
+
+        lblfrequencyATarget.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblfrequencyATarget.setText("Frequency Above Target:");
+
+        txtreqencyATarget.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtreqencyATargetActionPerformed(evt);
+            }
+        });
+
+        lblSalesRevenue.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSalesRevenue.setText("Sales Revenue:");
+
+        lblMarginAroundTarget.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMarginAroundTarget.setText("Margin Around Target:");
+
+        lblfrequencyBTarget.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblfrequencyBTarget.setText("Frequency Below Target:");
+
+>>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -40,5 +126,122 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnback)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(50, 50, 50))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSalesRevenue, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblfrequencyATarget)
+                            .addComponent(lblfrequencyBTarget))
+                        .addGap(255, 436, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblsupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMarginAroundTarget)
+                                    .addComponent(lblproductname, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtfrequencyBTarget)
+                                    .addComponent(txtMarginAroundTarget)
+                                    .addComponent(txtsalesrevenues, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txtreqencyATarget)
+                                    .addComponent(txtproductname))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnback))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SupplierComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblsupplier))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblproductname)
+                    .addComponent(txtproductname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblfrequencyATarget)
+                    .addComponent(txtreqencyATarget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblfrequencyBTarget)
+                    .addComponent(txtfrequencyBTarget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtsalesrevenues, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSalesRevenue))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMarginAroundTarget)
+                    .addComponent(txtMarginAroundTarget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void SupplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupplierComboBoxActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_SupplierComboBoxActionPerformed
+
+    private void SupplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SupplierCatalogTableMousePressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_SupplierCatalogTableMousePressed
+
+    private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnbackActionPerformed
+
+    private void txtreqencyATargetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtreqencyATargetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtreqencyATargetActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable SupplierCatalogTable;
+    private javax.swing.JComboBox<String> SupplierComboBox;
+    private javax.swing.JButton btnback;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMarginAroundTarget;
+    private javax.swing.JLabel lblSalesRevenue;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblfrequencyATarget;
+    private javax.swing.JLabel lblfrequencyBTarget;
+    private javax.swing.JLabel lblproductname;
+    private javax.swing.JLabel lblsupplier;
+    private javax.swing.JTextField txtMarginAroundTarget;
+    private javax.swing.JTextField txtfrequencyBTarget;
+    private javax.swing.JTextField txtproductname;
+    private javax.swing.JTextField txtreqencyATarget;
+    private javax.swing.JTextField txtsalesrevenues;
+>>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }
