@@ -15,7 +15,7 @@ import model.ProductManagement.SolutionOffer;
  */
 public class Market {
     ArrayList<SolutionOffer> so;
-    ArrayList<MarketChannelAssignment> channel;
+    ArrayList<MarketChannelAssignment> channels;
     ArrayList<String> characteristics;
     ArrayList<Market> submarkets;
     int size;

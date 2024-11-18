@@ -57,4 +57,5 @@ public class CustomerDirectory {
     public ArrayList<CustomerProfile> getCustomerlist() {
         return customerlist;
     }
+        
 }

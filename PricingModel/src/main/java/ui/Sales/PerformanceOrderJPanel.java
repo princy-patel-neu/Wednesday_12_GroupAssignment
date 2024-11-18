@@ -36,9 +36,9 @@ public class PerformanceOrderJPanel extends javax.swing.JPanel {
     private ProductCatalog productCatalog;
     
     
-    public PerformanceOrderJPanel() {
+    public PerformanceOrderJPanel(JPanel cardSequencePanel,Business business, SalesPersonProfile salesPerson,ArrayList<Order> orders, ProductCatalog productCatalog) {
         initComponents();
-         this.cardSequencePanel = cardSequencePanel;
+        this.cardSequencePanel = cardSequencePanel;
         this.business = business;
         this.salesPerson = salesPerson;
         this.orders = orders;
@@ -327,6 +327,10 @@ public class PerformanceOrderJPanel extends javax.swing.JPanel {
         }
         
         return totalRevenue;
+    }
+
+    private void refreshSupplierCatalogTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
 

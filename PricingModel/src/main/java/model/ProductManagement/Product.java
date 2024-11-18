@@ -5,6 +5,7 @@
  */
 package model.ProductManagement;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import model.OrderManagement.OrderItem;

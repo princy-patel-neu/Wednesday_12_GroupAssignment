@@ -4,18 +4,79 @@
  */
 package ui.Admin;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.AdminManagement.AdminProfile;
+import model.Business.Business;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.Supplier.Supplier;
+
 /**
  *
  * @author Swara
  */
 public class AdminManageSupplierJPanel extends javax.swing.JPanel {
+    JPanel cardSequencePanel;
+    Business business;
+    Supplier selectedsupplier;
+    Product selectedproduct;
+    JButton btnLogin;
+    AdminProfile admin;
 
     /**
      * Creates new form PrepareOrder
      */
-    public AdminManageSupplierJPanel() {
+    public AdminManageSupplierJPanel(Business bz, JPanel jp, AdminProfile admin, JButton btnLogin) {
+          cardSequencePanel = jp;
+        this.business = bz;
+        this.admin = admin;
+        this.btnLogin = btnLogin;
         initComponents();
+        initializeTable();
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY,2,true);
+        lblTitle.setBorder(border);
+
+        
     }
+    
+    public void refreshTable() {
+
+//clear supplier table
+        int rc = SupplierCatalogTable.getRowCount();
+        int i;
+        for (i = rc - 1; i >= 0; i--) {
+            ((DefaultTableModel) SupplierCatalogTable.getModel()).removeRow(i);
+        }
+
+        String suppliername = (String) SupplierComboBox.getSelectedItem();
+
+        selectedsupplier = business.getSupplierDirectory().findSupplier(suppliername);
+        if (selectedsupplier == null) {
+            return;
+        }
+        ProductCatalog pc = selectedsupplier.getProductCatalog();
+
+        for (Product pt : pc.getProductList()) {
+
+            Object[] row = new Object[5];
+            row[0] = pt;
+            row[1] = pt.getFloorPrice();
+            row[2] = pt.getCeilingPrice();
+            row[3] = pt.getTargetPrice();
+           
+            ((DefaultTableModel) SupplierCatalogTable.getModel()).addRow(row);
+        }
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,8 +87,6 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-=======
         lblTitle = new javax.swing.JLabel();
         lblsupplier = new javax.swing.JLabel();
         SupplierComboBox = new javax.swing.JComboBox<>();
@@ -110,23 +169,10 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
         lblfrequencyBTarget.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblfrequencyBTarget.setText("Frequency Below Target:");
 
->>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-=======
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +268,47 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
     private void txtreqencyATargetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtreqencyATargetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtreqencyATargetActionPerformed
+     private void initializeTable() {
+       
+//clear supplier table
+        SupplierComboBox.removeAllItems();
+
+        int rc = SupplierCatalogTable.getRowCount();
+        int i;
+        for (i = rc - 1; i >= 0; i--) {
+            ((DefaultTableModel) SupplierComboBox.getModel()).removeRow(i);
+        }
+//load suppliers to the combobox
+
+        ArrayList<Supplier> supplierlist = business.getSupplierDirectory().getSuplierList();
+
+        if (supplierlist.isEmpty()) {
+            return;
+        }
+        for (Supplier s : supplierlist) {
+            SupplierComboBox.addItem(s.toString());
+            SupplierComboBox.setSelectedIndex(0);
+
+            String suppliername = (String) SupplierComboBox.getSelectedItem();
+
+            selectedsupplier = business.getSupplierDirectory().findSupplier(suppliername);
+
+            ProductCatalog pc = selectedsupplier.getProductCatalog();
+
+            for (Product pt : pc.getProductList()) {
+
+                Object[] row = new Object[5];
+                row[0] = pt;
+                row[1] = pt.getFloorPrice();
+                row[2] = pt.getCeilingPrice();
+                row[3] = pt.getTargetPrice();
+//                row[1] = pt.getPerformanceMeasure();
+//               row[2] = la.getName();
+                ((DefaultTableModel) SupplierCatalogTable.getModel()).addRow(row);
+            }
+
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -242,6 +329,5 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtproductname;
     private javax.swing.JTextField txtreqencyATarget;
     private javax.swing.JTextField txtsalesrevenues;
->>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }

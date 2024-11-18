@@ -62,6 +62,11 @@ public class CustomerProfile {
     public void addCustomerOrder(Order o){
         orders.add(o);
     }
+    
+    public int getTotalNumberOfOrders() {
+    return orders.size();
+}
+    
     @Override
     public String toString(){
         return person.getPersonId();

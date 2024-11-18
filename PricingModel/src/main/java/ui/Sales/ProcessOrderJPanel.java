@@ -4,25 +4,101 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.Business.Business;
+import model.CustomerManagement.CustomerProfile;
+import model.OrderManagement.MasterOrderList;
+import model.OrderManagement.Order;
+import model.OrderManagement.OrderItem;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.ProductManagement.ProductSummary;
+import model.SalesManagement.SalesPersonProfile;
+import model.Supplier.Supplier;
+
 /**
  *
-<<<<<<< HEAD
- * @author Swara
-=======
  * @author nikha
->>>>>>> origin/nikhar
  */
 public class ProcessOrderJPanel extends javax.swing.JPanel {
 
+    JPanel cardSequencePanel;
+    Business business;
+    CustomerProfile customerProfile;
+    SalesPersonProfile salesPerson;
+    Supplier selectedSupplier;
+    Product selectedProduct;
+    Order currentOrder;
+
     /**
-<<<<<<< HEAD
-     * Creates new form BrowseProductCatalog
-=======
      * Creates new form BookCustomerOrder
->>>>>>> origin/nikhar
      */
-    public ProcessOrderJPanel() {
+    public ProcessOrderJPanel(JPanel cardSequencePanel, Business business, CustomerProfile selectedCustomer, SalesPersonProfile spp) {
         initComponents();
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        customerProfile = selectedCustomer;
+        salesPerson = spp;
+
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY, 2, true);
+        lblTitle.setBorder(border);
+
+        lblProductAdd.setVisible(false);
+        txtQuantity.setVisible(false);
+        lblActualPrice.setVisible(false);
+        txtActualPrice.setVisible(false);
+        btnAddItem.setVisible(false);
+
+        txtCustomer.setText(customerProfile.getCustomerId());
+        txtSalesPerson.setText(salesPerson.getPerson().toString());
+
+        MasterOrderList masterOrderList = business.getMasterOrderList();
+        currentOrder = masterOrderList.newOrder(customerProfile, salesPerson);
+
+        initializeTable();
+        cleanUpItemsTable();
+
+    }
+
+    private void suggestOptimizedActualPrice(Product selectedProduct) {
+
+        ArrayList<Integer> actualPrices = selectedProduct.getAllActualPrices();
+        int sumActualPrices = actualPrices.stream().mapToInt(Integer::intValue).sum();
+        int averageActualPrice = actualPrices.size() > 0 ? sumActualPrices / actualPrices.size() : 0;
+
+        double targetPrice = selectedProduct.getTargetPrice();
+
+        double priceDifference = targetPrice - averageActualPrice;
+        double suggestedPrice = 0;
+        if (averageActualPrice != 0) {
+
+            System.out.println("Average Actual Price: " + averageActualPrice);
+
+            if (averageActualPrice == selectedProduct.getCeilingPrice()) {
+                suggestedPrice = selectedProduct.getCeilingPrice();
+            } else {
+                suggestedPrice = averageActualPrice + ((averageActualPrice + priceDifference) * 0.05);
+                if (suggestedPrice > selectedProduct.getCeilingPrice()) {
+                    suggestedPrice = selectedProduct.getCeilingPrice();
+                }
+            }
+        } else {
+            suggestedPrice = targetPrice * 0.05;
+        }
+        // Display the suggested actual price to the salesperson
+        lblSuggestedPrice.setText("Suggested Actual Price: $" + String.format("%.2f", suggestedPrice));
+        lblSuggestedPrice.setBackground(Color.black);
+        lblSuggestedPrice.setOpaque(true);
+        lblSuggestedPrice.setForeground(Color.orange);
     }
 
     /**
@@ -34,8 +110,6 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-=======
         lblTitle = new javax.swing.JLabel();
         lblSuppliersList = new javax.swing.JLabel();
         suppliersComboBox = new javax.swing.JComboBox<>();
@@ -280,23 +354,10 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
 
         lblSuggestedPrice.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
->>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-=======
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
@@ -393,38 +454,159 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
 
     private void suppliersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersComboBoxActionPerformed
         // TODO add your handling code here:
+        refreshSupplierProductCatalogTable();
 
     }//GEN-LAST:event_suppliersComboBoxActionPerformed
 
     private void supplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierCatalogTableMousePressed
         // TODO add your handling code here:
+        int supplierTableSize = supplierCatalogTable.getRowCount();
+        int selectedRow = supplierCatalogTable.getSelectionModel().getLeadSelectionIndex();
 
+        if (selectedRow < 0 || selectedRow > supplierTableSize - 1) {
+            return;
+        }
+
+        selectedProduct = (Product) supplierCatalogTable.getValueAt(selectedRow, 0);
+        if (selectedProduct == null) {
+            return;
+        }
+
+        ArrayList<Integer> actualPrices = selectedProduct.getAllActualPrices();
+
+        System.out.println("Actual prices for Product: ");
+        for (Integer price : actualPrices) {
+            System.out.println(price);
+        }
+
+        ProductSummary productSummary = new ProductSummary(selectedProduct);
+
+        txtProductName.setText(selectedProduct.toString());
+        String revenues = String.valueOf(productSummary.getSalesRevenues());
+        txtSalesRev.setText(revenues);
+        txtFreqAbove.setText(String.valueOf(productSummary.getNumberAboveTarget()));
+        txtFreqBelow.setText(String.valueOf(productSummary.getNumberBelowTarget()));
+        txtMargAroundTarget.setText(String.valueOf(productSummary.getProductPricePerformance()));
+
+        cleanUpItemsTable();
     }//GEN-LAST:event_supplierCatalogTableMousePressed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
+        if (selectedProduct == null) {
+            JOptionPane.showMessageDialog(this, "PLEASE SELECT A PRODUCT FIRST!");
+            return;
+        }
+
+        int quantity = Integer.parseInt(txtQuantity.getText());
+        int actualPrice = Integer.parseInt(txtActualPrice.getText());
+
+        OrderItem item = currentOrder.newOrderItem(selectedProduct, actualPrice, quantity);
+
+        Object[] row = new Object[4];
+        row[0] = String.valueOf(item.getSelectedProduct());
+        row[1] = String.valueOf(item.getActualPrice());
+        row[2] = String.valueOf(item.getQuantity());
+        row[3] = String.valueOf(item.getOrderItemTotal());
+
+        ((DefaultTableModel) orderItemsTable.getModel()).addRow(row);
+
+        lblProductAdd.setVisible(false);
+        txtQuantity.setVisible(false);
+        lblActualPrice.setVisible(false);
+        txtActualPrice.setVisible(false);
+        btnAddItem.setVisible(false);
+        btnSelect.setEnabled(true);
+
+        txtQuantity.setText("");
+        txtActualPrice.setText("");
+
+        txtProductName.setText("");
+        txtFreqAbove.setText("");
+        txtFreqBelow.setText("");
+        txtSalesRev.setText("");
+        txtMargAroundTarget.setText("");
+        lblSuggestedPrice.setVisible(false);
 
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-
+        currentOrder.Submit();
+        JOptionPane.showMessageDialog(this, "ORDER SUBMITTED!");
+        cleanUpItemsTable();
     }//GEN-LAST:event_btnSubmitActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-
+        currentOrder.CancelOrder();
+        JOptionPane.showMessageDialog(this, "ORDER CANCELLED!");
+        cleanUpItemsTable();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:
+        int supplierTableSize = supplierCatalogTable.getRowCount();
+
+        int selectedRow = supplierCatalogTable.getSelectionModel().getLeadSelectionIndex();
+
+        if (selectedRow < 0 || selectedRow > supplierTableSize - 1) {
+            return;
+        }
+
+        selectedProduct = (Product) supplierCatalogTable.getValueAt(selectedRow, 0);
+        if (selectedProduct == null) {
+            return;
+        }
+
+        lblProductAdd.setVisible(true);
+        txtQuantity.setVisible(true);
+        lblActualPrice.setVisible(true);
+        txtActualPrice.setVisible(true);
+        btnAddItem.setVisible(true);
+        lblSuggestedPrice.setVisible(true);
+        suggestOptimizedActualPrice(selectedProduct);
 
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-
+        SalesWorkAreaJPanel panel = new SalesWorkAreaJPanel(business, salesPerson,
+                cardSequencePanel, btnBack);
+        cardSequencePanel.add("SalesWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
+    public void refreshSupplierProductCatalogTable() {
 
+        int rowCount = supplierCatalogTable.getRowCount();
+        int i;
+
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+
+        String supplierName = (String) suppliersComboBox.getSelectedItem();
+
+        selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+        if (selectedSupplier == null) {
+            return;
+        }
+
+        ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+
+        for (Product product : productCatalog.getProductList()) {
+            Object[] row = new Object[4];
+            row[0] = product;
+            row[1] = product.getFloorPrice();
+            row[2] = product.getCeilingPrice();
+            row[3] = product.getTargetPrice();
+
+            ((DefaultTableModel) supplierCatalogTable.getModel()).addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddItem;
@@ -462,6 +644,47 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtQuantity;
     private javax.swing.JTextField txtSalesPerson;
     private javax.swing.JTextField txtSalesRev;
->>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
+
+    private void initializeTable() {
+        cleanUpCombobox();
+        cleanUpTable();
+
+        ArrayList<Supplier> supplierList = business.getSupplierDirectory().getSuplierList();
+
+        if (supplierList.isEmpty()) {
+            return;
+        }
+
+        for (Supplier supplier : supplierList) {
+            suppliersComboBox.addItem(supplier.toString());
+            suppliersComboBox.setSelectedIndex(0);
+
+            String supplierName = (String) suppliersComboBox.getSelectedItem();
+            selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+            ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+        }
+    }
+
+    private void cleanUpItemsTable() {
+        int rowCount = orderItemsTable.getRowCount();
+        int i;
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) orderItemsTable.getModel()).removeRow(i);
+        }
+    }
+
+    private void cleanUpCombobox() {
+        suppliersComboBox.removeAllItems();
+    }
+
+    private void cleanUpTable() {
+
+        int row = supplierCatalogTable.getRowCount();
+        int i;
+        for (i = row - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+    }
 }

@@ -6,11 +6,7 @@ package ui.main;
 
 /**
  *
-<<<<<<< HEAD
- * @author Swara
-=======
  * @author nikha
->>>>>>> origin/nikhar
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -30,10 +26,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-=======
         splitPane = new javax.swing.JSplitPane();
         sideActionPane = new javax.swing.JPanel();
         btnLogin = new javax.swing.JButton();
@@ -98,37 +90,25 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setRightComponent(cardSequencePanel);
 
->>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-=======
             .addComponent(splitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(splitPane)
->>>>>>> origin/nikhar
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-=======
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
->>>>>>> origin/nikhar
     /**
      * @param args the command line arguments
      */
@@ -165,13 +145,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-=======
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel cardSequencePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel sideActionPane;
     private javax.swing.JSplitPane splitPane;
->>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }

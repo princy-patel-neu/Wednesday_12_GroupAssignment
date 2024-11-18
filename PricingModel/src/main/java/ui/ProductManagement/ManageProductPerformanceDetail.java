@@ -6,11 +6,7 @@ package ui.ProductManagement;
 
 /**
  *
-<<<<<<< HEAD
- * @author Swara
-=======
  * @author nikha
->>>>>>> origin/nikhar
  */
 public class ManageProductPerformanceDetail extends javax.swing.JPanel {
 
@@ -30,8 +26,6 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-=======
         Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -93,23 +87,10 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
 
         jLabel7.setText("Margin Around Target:");
 
->>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-=======
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,6 +187,5 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
     private javax.swing.JTextField txtMargin;
     private javax.swing.JTextField txtSalesRev;
     private javax.swing.JTextField txtprodName;
->>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }

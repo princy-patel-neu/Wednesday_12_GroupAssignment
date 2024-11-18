@@ -16,17 +16,26 @@ public class OrderItem {
     Product selectedproduct;
     int actualPrice;
     int quantity;
+    private int storedTargetPrice;
 
     public OrderItem(Product p, int paidprice, int q) {
         selectedproduct = p;
-        p.addOrderItem(this); //make sure product links back to the item
+         //make sure product links back to the item
         quantity = q;
         this.actualPrice = paidprice;
+        this.storedTargetPrice = p.getTargetPrice();
+        p.addOrderItem(this);
     }
 
     public int getOrderItemTotal() {
         return actualPrice * quantity;
     }
+
+    public int getStoredTargetPrice() {
+        return storedTargetPrice;
+    }
+    
+    
 
 //The following calculates what the price gain would have been if products were sold at target price
     public int getOrderItemTargetTotal() {

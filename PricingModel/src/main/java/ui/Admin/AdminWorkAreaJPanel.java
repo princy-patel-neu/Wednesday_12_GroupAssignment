@@ -4,21 +4,53 @@
  */
 package ui.Admin;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import model.AdminManagement.AdminProfile;
+import model.Business.Business;
+import model.OrderManagement.Order;
+import model.ProductManagement.ProductCatalog;
+import model.Supplier.Supplier;
+
 /**
  *
-<<<<<<< HEAD
- * @author Swara
-=======
  * @author nikha
->>>>>>> origin/nikhar
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+    
+    private ArrayList<Order> orders;
+    JButton btnLogin;
+    JPanel cardSequencePanel;
+    Business business;
+    AdminProfile admin;
+    ProductCatalog productCatalog;
+    Supplier selectedSupplier;
+    
 
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
-        initComponents();
+    public AdminWorkAreaJPanel(Business business, AdminProfile admin, JPanel cardSequencePanel, JButton btnLogin) {
+       initComponents();
+        
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        this.admin = admin;
+        this.orders = business.getMasterOrderList().getOrders();
+        this.btnLogin = btnLogin;
+        this.productCatalog = productCatalog;
+        
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY,2,true);
+        lblTitle.setBorder(border);
+        
+        btnLogin.setVisible(true);
+        btnLogin.setText("LOGOUT");
     }
 
     /**
@@ -30,8 +62,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-<<<<<<< HEAD
-=======
         lblTitle = new javax.swing.JLabel();
         btnManageSupplier = new javax.swing.JButton();
         btnManageCustomer = new javax.swing.JButton();
@@ -73,23 +103,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
->>>>>>> origin/nikhar
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-=======
             .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
@@ -116,16 +133,30 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void btnManageSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSupplierActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
+        AdminManageSupplierJPanel iet = new AdminManageSupplierJPanel(business , cardSequencePanel, 
+                admin, btnLogin);
+       
+        cardSequencePanel.add("FindResourceAsset", iet);
+        ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
 
     }//GEN-LAST:event_btnManageSupplierActionPerformed
 
     private void btnManageCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomerActionPerformed
         // TODO add your handling code here:
+         ManageCustomersJPanel mcjp = new ManageCustomersJPanel(cardSequencePanel, business, admin, btnLogin);
+       
+        cardSequencePanel.add("ManageCustomersJPanel", mcjp);
+        ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
 
     }//GEN-LAST:event_btnManageCustomerActionPerformed
 
     private void btnPerformanceRepotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceRepotsActionPerformed
         // TODO add your handling code here:
+        PerformanceReportJPanel prp = new PerformanceReportJPanel(cardSequencePanel, business, 
+                admin, orders, productCatalog, btnLogin);
+        
+        cardSequencePanel.add("egfw ", prp);
+        ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
 
     }//GEN-LAST:event_btnPerformanceRepotsActionPerformed
 
@@ -135,6 +166,5 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageSupplier;
     private javax.swing.JButton btnPerformanceRepots;
     private javax.swing.JLabel lblTitle;
->>>>>>> origin/nikhar
     // End of variables declaration//GEN-END:variables
 }
