@@ -33,7 +33,18 @@ public class Order {
         salesperson = null;
         status = "in process";
     }
-
+     public int getSalesRevenueForProduct(Product product) {
+        int total = 0;
+        for (OrderItem oi : orderitems) {
+            if (oi.getSelectedProduct().equals(product)) {
+                total += oi.getOrderItemTotal();
+            }
+        }
+        return total;
+    }
+public ArrayList<OrderItem> getOrderitems() {
+        return orderitems;
+    }
 
     public Order(CustomerProfile cp, SalesPersonProfile ep) {
         orderitems = new ArrayList();

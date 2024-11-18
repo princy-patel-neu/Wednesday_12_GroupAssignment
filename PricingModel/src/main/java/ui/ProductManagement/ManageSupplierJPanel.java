@@ -4,17 +4,28 @@
  */
 package ui.ProductManagement;
 
+import javax.swing.JPanel;
+import model.Business.Business;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductSummary;
+import model.Supplier.Supplier;
+
 /**
  *
  * @author nikha
  */
 public class ManageSupplierJPanel extends javax.swing.JPanel {
-
+  Business business;
+    JPanel cardSequencePanel;
+    Supplier selectedsupplier;
+    Product selectedproduct;
     /**
      * Creates new form ManageSupplierJPanel
      */
-    public ManageSupplierJPanel() {
+    public ManageSupplierJPanel(Business business, JPanel cardSequencePanel) {
         initComponents();
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
     }
 
     /**
@@ -225,19 +236,23 @@ public class ManageSupplierJPanel extends javax.swing.JPanel {
 
     private void cmbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSuppliersActionPerformed
         // TODO add your handling code here:
-
+ refreshTable();
         //String sname = (String) SuppliersComboBox.getSelectedItem();
         //selectedsupplier = business.getSupplierDirectory().findSupplier(sname);
     }//GEN-LAST:event_cmbSuppliersActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+  cardSequencePanel.remove(this);
+        ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         // TODO add your handling code here:
-
+        ManageProductPerformanceDetail mppd = new ManageProductPerformanceDetail(selectedproduct, cardSequencePanel);
+        cardSequencePanel.add(mppd);
+        ((java.awt.CardLayout) cardSequencePanel.getLayout()).next(cardSequencePanel);
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void tblProductsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseEntered
@@ -246,7 +261,25 @@ public class ManageSupplierJPanel extends javax.swing.JPanel {
 
     private void tblProductsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMousePressed
         // TODO add your handling code here:
+int suppliertablesize = tblProducts.getRowCount();
+        int selectedrow = tblProducts.getSelectionModel().getLeadSelectionIndex();
 
+        if (selectedrow < 0 || selectedrow > suppliertablesize - 1) {
+            return;
+        }
+        selectedproduct = (Product) tblProducts.getValueAt(selectedrow, 0);
+        if (selectedproduct == null) {
+            return;
+        }
+
+        ProductSummary productsummary = new ProductSummary(selectedproduct);
+
+        txtProdName.setText(selectedproduct.toString());
+        String revenues = String.valueOf(productsummary.getSalesRevenues());
+        txtSalesRev.setText(revenues);
+        txtFreqAboveTarget.setText( String.valueOf(productsummary.getNumberAboveTarget()));
+        txtFreqBelowTarget.setText( String.valueOf(productsummary.getNumberBelowTarget()));
+        txtMargin.setText(String.valueOf(productsummary.getProductPricePerformance()));
     }//GEN-LAST:event_tblProductsMousePressed
 
     private void txtProdNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProdNameActionPerformed
@@ -287,4 +320,8 @@ public class ManageSupplierJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtProdName;
     private javax.swing.JTextField txtSalesRev;
     // End of variables declaration//GEN-END:variables
+
+    private void refreshTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

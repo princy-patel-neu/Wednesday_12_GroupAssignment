@@ -14,6 +14,8 @@ import model.MarketingManagement.MarketingPersonDirectory;
 import model.OrderManagement.MasterOrderList;
 import model.Personnel.EmployeeDirectory;
 import model.Personnel.PersonDirectory;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
 import model.ProductManagement.ProductSummary;
 import model.ProductManagement.ProductsReport;
 import model.ProductManagement.SolutionOfferCatalog;
@@ -112,5 +114,15 @@ public class Business {
         public EmployeeDirectory getEmployeeDirectory() {
         return employeedirectory;
     }
-
+ public ProductCatalog getProductCatalog(){
+        ProductCatalog combinedCatalog = new ProductCatalog();
+        for(Supplier supplier : suppliers.getSuplierList()){
+            for(Product product : supplier.getProductCatalog().getProductList()){
+                combinedCatalog.newProduct(product.getName(), product.getFloorPrice(), product.getCeilingPrice(),
+                        product.getTargetPrice());
+            }
+        }
+        
+        return combinedCatalog;
+    }
 }

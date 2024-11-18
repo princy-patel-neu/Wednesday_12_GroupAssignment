@@ -4,6 +4,9 @@
  */
 package ui.ProductManagement;
 
+import javax.swing.JPanel;
+import model.ProductManagement.Product;
+
 /**
  *
  * @author nikha
@@ -13,7 +16,7 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
     /**
      * Creates new form ManageProductPerformanceDetail
      */
-    public ManageProductPerformanceDetail() {
+    public ManageProductPerformanceDetail(Product selectedproduct, JPanel cardSequencePanel) {
         initComponents();
     }
 

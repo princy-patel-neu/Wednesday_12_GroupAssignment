@@ -4,6 +4,13 @@
  */
 package ui.Admin;
 
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import model.Business.Business;
+import model.OrderManagement.Order;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+
 /**
  *
  * @author nikha
@@ -13,7 +20,7 @@ public class PerformanceReportJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PerformanceReportJPanel
      */
-    public PerformanceReportJPanel() {
+    public PerformanceReportJPanel(JPanel cardSequencePanel, Business business, SalesPersonProfile spp, ArrayList<Order> orders, ProductCatalog combinedProductCatalog) {
         initComponents();
     }
 
