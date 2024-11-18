@@ -18,6 +18,7 @@ import model.SalesManagement.SalesPersonProfile;
  */
 public class Order {
 
+    
     ArrayList<OrderItem> orderitems;
     CustomerProfile customer;
     SalesPersonProfile salesperson;
@@ -32,6 +33,10 @@ public class Order {
         customer.addCustomerOrder(this); //we link the order to the customer
         salesperson = null;
         status = "in process";
+    }
+    
+    public void addOrderItem(OrderItem oi){
+        orderitems.add(oi);
     }
 
 
@@ -64,6 +69,12 @@ public class Order {
         return sum;
     }
 
+    public ArrayList<OrderItem> getOrderitems() {
+        return orderitems;
+    }
+    
+    
+
     public int getNumberOfOrderItemsAboveTarget() {
         int sum = 0;
         for (OrderItem oi : orderitems) {
@@ -84,6 +95,18 @@ public class Order {
         else {return false;}
         
     }
+    
+    public int getSalesRevenueForProduct(Product product) {
+        int total = 0;
+        for (OrderItem oi : orderitems) {
+            if (oi.getSelectedProduct().equals(product)) {
+                total += oi.getOrderItemTotal();
+            }
+        }
+        return total;
+    }
+
+    
 public void CancelOrder(){
     status = "Cancelled";
 }

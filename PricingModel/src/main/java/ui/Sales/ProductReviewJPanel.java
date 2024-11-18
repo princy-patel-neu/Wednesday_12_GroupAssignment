@@ -4,17 +4,46 @@
  */
 package ui.Sales;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import model.Business.Business;
+import model.ProductManagement.Product;
+import model.ProductManagement.ProductCatalog;
+import model.SalesManagement.SalesPersonProfile;
+import model.Supplier.Supplier;
+
 /**
  *
- * @author nikha
+ * @author Swara
  */
 public class ProductReviewJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageCustomer
+     * Creates new form CheckOrderStatus
      */
-    public ProductReviewJPanel() {
+    JPanel cardSequencePanel;
+    Business business;
+    SalesPersonProfile salesPerson;
+    Supplier selectedSupplier;
+    Product selectedProduct;
+
+    public ProductReviewJPanel(JPanel cardSequencePanel, Business business, SalesPersonProfile spp) {
         initComponents();
+        this.cardSequencePanel = cardSequencePanel;
+        this.business = business;
+        salesPerson = spp;
+
+        lblTitle.setBackground(new Color(153, 153, 255));
+        lblTitle.setOpaque(true);
+        Border border = new LineBorder(Color.GRAY, 2, true);
+        lblTitle.setBorder(border);
+
+        initializeTable();
     }
 
     /**
@@ -26,19 +55,262 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        suppliersComboBox = new javax.swing.JComboBox<>();
+        lblSuppliers = new javax.swing.JLabel();
+        scrollPane = new javax.swing.JScrollPane();
+        supplierCatalogTable = new javax.swing.JTable();
+        lblAdjustPrice = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("PRODUCT REVIEW");
+
+        suppliersComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        suppliersComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suppliersComboBoxActionPerformed(evt);
+            }
+        });
+
+        lblSuppliers.setText("Suppliers:");
+
+        supplierCatalogTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "PRODUCT", "FLOOR", "CEILING", "TARGET", "AVERAGE ACTUAL PRICE"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        supplierCatalogTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                supplierCatalogTableMousePressed(evt);
+            }
+        });
+        scrollPane.setViewportView(supplierCatalogTable);
+        if (supplierCatalogTable.getColumnModel().getColumnCount() > 0) {
+            supplierCatalogTable.getColumnModel().getColumn(4).setPreferredWidth(150);
+        }
+
+        lblAdjustPrice.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+
+        btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("< BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblSuppliers)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(suppliersComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+                        .addComponent(lblAdjustPrice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(439, 439, 439)))
+                .addGap(135, 135, 135))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBack)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSuppliers)
+                    .addComponent(suppliersComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(lblAdjustPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(165, 165, 165))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void suppliersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppliersComboBoxActionPerformed
+        // TODO add your handling code here:
+        refreshSupplierCatalogTable();
+    }//GEN-LAST:event_suppliersComboBoxActionPerformed
+
+    private void supplierCatalogTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierCatalogTableMousePressed
+        // TODO add your handling code here:
+        int supplierTableSize = supplierCatalogTable.getRowCount();
+        int selectedRow = supplierCatalogTable.getSelectionModel().getLeadSelectionIndex();
+
+        if (selectedRow < 0 || selectedRow > supplierTableSize - 1) {
+            return;
+        }
+
+        selectedProduct = (Product) supplierCatalogTable.getValueAt(selectedRow, 0);
+        if (selectedProduct == null) {
+            return;
+        }
+
+        ArrayList<Integer> actualPrices = selectedProduct.getAllActualPrices();
+        int numberOfSalesAboveTarget = selectedProduct.getNumberOfProductSalesAboveTarget();
+        int numberOfSalesBelowTarget = selectedProduct.getNumberOfProductSalesBelowTarget();
+        int targetPrice = selectedProduct.getTargetPrice();
+        int sumActualPrices = actualPrices.stream().mapToInt(Integer::intValue).sum();
+        int averageActualPrice = actualPrices.size() > 0 ? sumActualPrices / actualPrices.size() : 0;
+
+        if (averageActualPrice < targetPrice) {
+            if (numberOfSalesBelowTarget > numberOfSalesAboveTarget) {
+                int adjustmentAmount = targetPrice - averageActualPrice;
+                adjustmentAmount = (int) (adjustmentAmount - (adjustmentAmount * 0.05));
+                adjustmentAmount = (adjustmentAmount / 10) * 10;
+                lblAdjustPrice.setForeground(Color.red);
+                lblAdjustPrice.setText("Lower the target price by around: " + adjustmentAmount);
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            } else {
+                lblAdjustPrice.setForeground(new Color(255, 102, 0));
+                lblAdjustPrice.setText("Maintain the target price!");
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            }
+        } else if (averageActualPrice > targetPrice) {
+            if (numberOfSalesAboveTarget > (numberOfSalesBelowTarget + 1)) {
+                int adjustmentAmount = averageActualPrice - targetPrice;
+                adjustmentAmount = (int) (adjustmentAmount - (adjustmentAmount * 0.05));
+                adjustmentAmount = (adjustmentAmount / 10) * 10;
+                lblAdjustPrice.setForeground(Color.green);
+                lblAdjustPrice.setText("Increase the target price by around: " + adjustmentAmount);
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            } else {
+                lblAdjustPrice.setForeground(new Color(255, 102, 0));
+                lblAdjustPrice.setText("Maintain the target price!");
+                lblAdjustPrice.setBackground(Color.black);
+                lblAdjustPrice.setOpaque(true);
+            }
+        } else {
+            lblAdjustPrice.setForeground(new Color(255, 102, 0));
+            lblAdjustPrice.setText("Maintain the target price!");
+            lblAdjustPrice.setBackground(Color.black);
+            lblAdjustPrice.setOpaque(true);
+        }
+
+    }//GEN-LAST:event_supplierCatalogTableMousePressed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        SalesWorkAreaJPanel panel = new SalesWorkAreaJPanel(business, salesPerson,
+                cardSequencePanel, btnBack);
+        cardSequencePanel.add("SalesWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+    private void initializeTable() {
+        cleanUpCombobox();
+        cleanUpTable();
+
+        ArrayList<Supplier> supplierList = business.getSupplierDirectory().getSuplierList();
+
+        if (supplierList.isEmpty()) {
+            return;
+        }
+
+        for (Supplier supplier : supplierList) {
+            suppliersComboBox.addItem(supplier.toString());
+            suppliersComboBox.setSelectedIndex(0);
+
+            String supplierName = (String) suppliersComboBox.getSelectedItem();
+            selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+            ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+        }
+    }
+
+    private void cleanUpCombobox() {
+        suppliersComboBox.removeAllItems();
+    }
+
+    private void cleanUpTable() {
+
+        int row = supplierCatalogTable.getRowCount();
+        int i;
+        for (i = row - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+    }
+
+    public void refreshSupplierCatalogTable() {
+        int rowCount = supplierCatalogTable.getRowCount();
+        int i;
+
+        for (i = rowCount - 1; i >= 0; i--) {
+            ((DefaultTableModel) supplierCatalogTable.getModel()).removeRow(i);
+        }
+
+        String supplierName = (String) suppliersComboBox.getSelectedItem();
+
+        selectedSupplier = business.getSupplierDirectory().findSupplier(supplierName);
+
+        if (selectedSupplier == null) {
+            return;
+        }
+
+        ProductCatalog productCatalog = selectedSupplier.getProductCatalog();
+
+        for (Product product : productCatalog.getProductList()) {
+            Object[] row = new Object[5];
+            row[0] = product;
+            row[1] = product.getFloorPrice();
+            row[2] = product.getCeilingPrice();
+            row[3] = product.getTargetPrice();
+
+            ArrayList<Integer> actualPrices = product.getAllActualPrices();
+
+            int sumActualPrices = actualPrices.stream().mapToInt(Integer::intValue).sum();
+
+            int averageActualPrice = actualPrices.size() > 0 ? sumActualPrices / actualPrices.size() : 0;
+
+            row[4] = averageActualPrice;
+
+            ((DefaultTableModel) supplierCatalogTable.getModel()).addRow(row);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JLabel lblAdjustPrice;
+    private javax.swing.JLabel lblSuppliers;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JTable supplierCatalogTable;
+    private javax.swing.JComboBox<String> suppliersComboBox;
     // End of variables declaration//GEN-END:variables
+
 }

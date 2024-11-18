@@ -7,10 +7,9 @@ package model.AdminManagement;
 import model.Personnel.Person;
 import model.Personnel.Profile;
 
-
 /**
  *
- * @author princypatel
+ * @author swara
  */
 public class AdminProfile extends Profile{
     
@@ -24,6 +23,3 @@ public class AdminProfile extends Profile{
         return  "Admin";
     }
 }
-
-
-
