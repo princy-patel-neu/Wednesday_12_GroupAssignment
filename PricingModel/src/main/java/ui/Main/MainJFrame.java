@@ -42,7 +42,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         sideActionPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnLogin.setBackground(new java.awt.Color(153, 153, 255));
+        btnLogin.setBackground(new java.awt.Color(0, 0, 0));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");

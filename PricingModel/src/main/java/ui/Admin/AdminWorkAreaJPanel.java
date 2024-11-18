@@ -44,7 +44,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.btnLogin = btnLogin;
         this.productCatalog = productCatalog;
         
-        lblTitle.setBackground(new Color(153, 153, 255));
+        //lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY,2,true);
         lblTitle.setBorder(border);
@@ -67,13 +67,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageCustomer = new javax.swing.JButton();
         btnPerformanceRepots = new javax.swing.JButton();
 
-        lblTitle.setBackground(new java.awt.Color(153, 153, 255));
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("       ADMIN WORK SPACE");
 
-        btnManageSupplier.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageSupplier.setBackground(new java.awt.Color(0, 0, 0));
         btnManageSupplier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageSupplier.setForeground(new java.awt.Color(255, 255, 255));
         btnManageSupplier.setText("Supplier Management");
@@ -83,7 +83,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageCustomer.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageCustomer.setBackground(new java.awt.Color(0, 0, 0));
         btnManageCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnManageCustomer.setText("Customer Management");
@@ -93,7 +93,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPerformanceRepots.setBackground(new java.awt.Color(153, 153, 255));
+        btnPerformanceRepots.setBackground(new java.awt.Color(0, 0, 0));
         btnPerformanceRepots.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPerformanceRepots.setForeground(new java.awt.Color(255, 255, 255));
         btnPerformanceRepots.setText("Performance Reports");

@@ -73,7 +73,7 @@ public class UpdateProductPrices extends javax.swing.JPanel {
         lblTarget = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
-        lblTitle.setBackground(new java.awt.Color(153, 153, 255));
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,7 +102,7 @@ public class UpdateProductPrices extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblSummary);
 
-        btnViewProduct.setBackground(new java.awt.Color(153, 153, 255));
+        btnViewProduct.setBackground(new java.awt.Color(0, 0, 0));
         btnViewProduct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnViewProduct.setForeground(new java.awt.Color(255, 255, 255));
         btnViewProduct.setText("View Product");
@@ -126,7 +126,7 @@ public class UpdateProductPrices extends javax.swing.JPanel {
 
         lblCeiling.setText("Ceiling:");
 
-        btnUpdate.setBackground(new java.awt.Color(153, 153, 255));
+        btnUpdate.setBackground(new java.awt.Color(0, 0, 0));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("UPDATE");
@@ -149,7 +149,7 @@ public class UpdateProductPrices extends javax.swing.JPanel {
 
         lblTarget.setText("Target:");
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("<<< Back");

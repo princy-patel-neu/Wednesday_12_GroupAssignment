@@ -70,7 +70,9 @@ public class PerformanceReportJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblCompanyRevenueStatus = new javax.swing.JLabel();
 
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("PERFORMANCE REPORT");
 
@@ -100,7 +102,7 @@ public class PerformanceReportJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblProductRevenue);
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("<<<Back");
@@ -136,7 +138,7 @@ public class PerformanceReportJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
                         .addComponent(lblCompanyRevenueStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(259, 259, 259))
+                .addContainerGap(259, Short.MAX_VALUE))
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

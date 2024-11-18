@@ -38,7 +38,7 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
         this.business = business;
         salesPerson = spp;
 
-        lblTitle.setBackground(new Color(153, 153, 255));
+        //lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY, 2, true);
         lblTitle.setBorder(border);
@@ -63,6 +63,7 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
         lblAdjustPrice = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,7 +109,7 @@ public class ProductReviewJPanel extends javax.swing.JPanel {
 
         lblAdjustPrice.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("< BACK");

@@ -47,7 +47,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
         customerProfile = selectedCustomer;
         salesPerson = spp;
 
-        lblTitle.setBackground(new Color(153, 153, 255));
+       // lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY, 2, true);
         lblTitle.setBorder(border);
@@ -146,6 +146,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         lblSuggestedPrice = new javax.swing.JLabel();
 
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -194,7 +195,8 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
 
         lblOrderItems.setText("Order Items:");
 
-        businessIntelligencePanel.setBackground(new java.awt.Color(153, 153, 255));
+        businessIntelligencePanel.setBackground(new java.awt.Color(0, 0, 0));
+        businessIntelligencePanel.setForeground(new java.awt.Color(255, 255, 255));
 
         lblBusinessIntelligence.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBusinessIntelligence.setForeground(new java.awt.Color(255, 255, 255));
@@ -277,7 +279,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        btnAddItem.setBackground(new java.awt.Color(153, 153, 255));
+        btnAddItem.setBackground(new java.awt.Color(0, 0, 0));
         btnAddItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
         btnAddItem.setText("ADD");
@@ -308,7 +310,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
         });
         scrollPaneOrderItems.setViewportView(orderItemsTable);
 
-        btnSubmit.setBackground(new java.awt.Color(153, 153, 255));
+        btnSubmit.setBackground(new java.awt.Color(0, 0, 0));
         btnSubmit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("SUBMIT");
@@ -318,7 +320,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCancel.setBackground(new java.awt.Color(153, 153, 255));
+        btnCancel.setBackground(new java.awt.Color(0, 0, 0));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("CANCEL");
@@ -332,7 +334,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
 
         lblActualPrice.setText("Actual Price:");
 
-        btnSelect.setBackground(new java.awt.Color(153, 153, 255));
+        btnSelect.setBackground(new java.awt.Color(0, 0, 0));
         btnSelect.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSelect.setForeground(new java.awt.Color(255, 255, 255));
         btnSelect.setText("SELECT");
@@ -342,7 +344,7 @@ public class ProcessOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setBackground(new java.awt.Color(153, 153, 255));
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("<<< Back");

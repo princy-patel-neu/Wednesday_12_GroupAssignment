@@ -43,7 +43,7 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
         this.cardSequencePanel = cardSequencePanel;
         this.btnLogin = btnLogin;
 
-        lblTitle.setBackground(new Color(153, 153, 255));
+        //lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY, 2, true);
         lblTitle.setBorder(border);
@@ -73,12 +73,13 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
 
         lblCustomer.setText("Customer:");
 
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("SALES WORK AREA");
 
-        btnServeCustomer.setBackground(new java.awt.Color(153, 153, 255));
+        btnServeCustomer.setBackground(new java.awt.Color(0, 0, 0));
         btnServeCustomer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnServeCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnServeCustomer.setText("Serve Customer");
@@ -88,7 +89,7 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnRevComission.setBackground(new java.awt.Color(153, 153, 255));
+        btnRevComission.setBackground(new java.awt.Color(0, 0, 0));
         btnRevComission.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRevComission.setForeground(new java.awt.Color(255, 255, 255));
         btnRevComission.setText("Update Products");
@@ -98,7 +99,7 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPerformanceReports.setBackground(new java.awt.Color(153, 153, 255));
+        btnPerformanceReports.setBackground(new java.awt.Color(0, 0, 0));
         btnPerformanceReports.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPerformanceReports.setForeground(new java.awt.Color(255, 255, 255));
         btnPerformanceReports.setText("Performance Reports");
@@ -108,7 +109,7 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnProductReview.setBackground(new java.awt.Color(153, 153, 255));
+        btnProductReview.setBackground(new java.awt.Color(0, 0, 0));
         btnProductReview.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnProductReview.setForeground(new java.awt.Color(255, 255, 255));
         btnProductReview.setText("Product Review");
@@ -133,12 +134,12 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnServeCustomer))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnProductReview, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnRevComission)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnPerformanceReports, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43))
+                        .addComponent(btnProductReview, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRevComission, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPerformanceReports)))
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,6 +209,7 @@ public class SalesWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
         layout.next(cardSequencePanel);
     }//GEN-LAST:event_btnProductReviewActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

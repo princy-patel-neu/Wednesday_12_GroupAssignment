@@ -52,6 +52,9 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
         txtMargin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
 
+        Back.setBackground(new java.awt.Color(0, 0, 0));
+        Back.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        Back.setForeground(new java.awt.Color(255, 255, 255));
         Back.setText("<<< Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +62,7 @@ public class ManageProductPerformanceDetail extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

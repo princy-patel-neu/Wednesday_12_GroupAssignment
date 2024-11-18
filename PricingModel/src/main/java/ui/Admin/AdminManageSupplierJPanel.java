@@ -4,6 +4,7 @@
  */
 package ui.Admin;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -39,7 +40,7 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
         this.btnLogin = btnLogin;
         initComponents();
         initializeTable();
-        lblTitle.setBackground(new Color(153, 153, 255));
+        //lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY,2,true);
         lblTitle.setBorder(border);
@@ -105,6 +106,7 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
         txtMarginAroundTarget = new javax.swing.JTextField();
         txtfrequencyBTarget = new javax.swing.JTextField();
 
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,7 +140,7 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(SupplierCatalogTable);
 
-        btnback.setBackground(new java.awt.Color(153, 153, 255));
+        btnback.setBackground(new java.awt.Color(0, 0, 0));
         btnback.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnback.setForeground(new java.awt.Color(255, 255, 255));
         btnback.setText("<<< Back");
@@ -262,6 +264,12 @@ public class AdminManageSupplierJPanel extends javax.swing.JPanel {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
+        AdminWorkAreaJPanel panel = new AdminWorkAreaJPanel(business, admin, cardSequencePanel, btnLogin);
+        cardSequencePanel.add("AdminWorkAreaJPanel", panel);
+        CardLayout cardLayout = new CardLayout();
+        cardSequencePanel.setLayout(cardLayout);
+        CardLayout layout = (CardLayout) cardSequencePanel.getLayout();
+        layout.next(cardSequencePanel);
 
     }//GEN-LAST:event_btnbackActionPerformed
 

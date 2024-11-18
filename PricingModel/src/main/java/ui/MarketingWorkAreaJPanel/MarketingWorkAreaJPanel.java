@@ -40,7 +40,7 @@ public class MarketingWorkAreaJPanel extends javax.swing.JPanel {
         btnManageChannels = new javax.swing.JButton();
         btnManagePrices1 = new javax.swing.JButton();
 
-        btnManageMarkets.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageMarkets.setBackground(new java.awt.Color(0, 0, 0));
         btnManageMarkets.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageMarkets.setForeground(new java.awt.Color(255, 255, 255));
         btnManageMarkets.setText("Manage Markets");
@@ -50,14 +50,14 @@ public class MarketingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblTitle.setBackground(new java.awt.Color(153, 153, 255));
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("MARKETING WORK SPACE");
         lblTitle.setOpaque(true);
 
-        btnPerformanceReports.setBackground(new java.awt.Color(153, 153, 255));
+        btnPerformanceReports.setBackground(new java.awt.Color(0, 0, 0));
         btnPerformanceReports.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPerformanceReports.setForeground(new java.awt.Color(255, 255, 255));
         btnPerformanceReports.setText("Performance Reports");
@@ -67,7 +67,7 @@ public class MarketingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageChannels.setBackground(new java.awt.Color(153, 153, 255));
+        btnManageChannels.setBackground(new java.awt.Color(0, 0, 0));
         btnManageChannels.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManageChannels.setForeground(new java.awt.Color(255, 255, 255));
         btnManageChannels.setText("Manage Channels");
@@ -77,7 +77,7 @@ public class MarketingWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManagePrices1.setBackground(new java.awt.Color(153, 153, 255));
+        btnManagePrices1.setBackground(new java.awt.Color(0, 0, 0));
         btnManagePrices1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnManagePrices1.setForeground(new java.awt.Color(255, 255, 255));
         btnManagePrices1.setText("Manage Prices");

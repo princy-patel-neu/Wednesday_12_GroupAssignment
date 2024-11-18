@@ -39,7 +39,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         this.btnLogin = btnLogin;
         btnLogin.setVisible(false);
         
-        lblTitle.setBackground(new Color(153, 153, 255));
+        //lblTitle.setBackground(new Color(153, 153, 255));
         lblTitle.setOpaque(true);
         Border border = new LineBorder(Color.GRAY,2,true);
         lblTitle.setBorder(border);
@@ -64,7 +64,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         lblError = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
 
-        lblTitle.setBackground(new java.awt.Color(255, 255, 255));
+        lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,7 +80,7 @@ public class LoginJPanel extends javax.swing.JPanel {
 
         lblPassword.setText("Password:");
 
-        btnLoginUser.setBackground(new java.awt.Color(153, 153, 255));
+        btnLoginUser.setBackground(new java.awt.Color(0, 0, 0));
         btnLoginUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLoginUser.setForeground(new java.awt.Color(255, 255, 255));
         btnLoginUser.setText("LOGIN");
